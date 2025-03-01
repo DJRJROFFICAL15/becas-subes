@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro para Beca</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="tel"],
+        .form-container select,
+        .form-container input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px; /* Aumentamos el padding */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 90%; /* Aumentamos el ancho */
+            max-width: 500px; /* Ajustamos el máximo ancho */
+            text-align: center;
+        }
+
+        .modal img {
+            width: 100%; /* La imagen ocupa el 100% del ancho del modal */
+            max-width: 300px; /* Tamaño máximo de la imagen */
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 20px; /* Espacio entre la imagen y el texto */
+        }
+
+        .modal p {
+            margin: 10px 0; /* Espacio entre los párrafos */
+            font-size: 16px;
+            color: #333;
+        }
+
+        .modal button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #218838;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+
+        .congrats-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .congrats-modal h2 {
+            font-size: 24px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .congrats-modal button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .congrats-modal button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Solicitud de Beca</h2>
+        <form id="registroForm">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="carrera">Carrera:</label>
+            <input type="text" id="carrera" name="carrera" required>
+
+            <label for="cuatrimestre">Cuatrimestre:</label>
+            <select id="cuatrimestre" name="cuatrimestre" required>
+                <option value="1">1er Cuatrimestre</option>
+                <option value="2">2do Cuatrimestre</option>
+                <option value="3">3er Cuatrimestre</option>
+                <option value="4">4to Cuatrimestre</option>
+                <option value="5">5to Cuatrimestre</option>
+                <option value="6">6to Cuatrimestre</option>
+                <option value="7">7mo Cuatrimestre</option>
+                <option value="8">8vo Cuatrimestre</option>
+                <option value="9">9no Cuatrimestre</option>
+                <option value="10">10mo Cuatrimestre</option>
+            </select>
+
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" required>
+
+            <label for="telefono">Número Telefónico:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo Institucional:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <input type="submit" value="Enviar Solicitud">
+        </form>
+    </div>
+
+    <!-- Ventana de felicitaciones -->
+    <div class="overlay" id="overlay"></div>
+    <div class="congrats-modal" id="congratsModal">
+        <h2>¡FELICIDADES, TE LLEGARÁ LA BECA PRONTO!</h2>
+        <button onclick="mostrarAdvertencia()">Continuar</button>
+    </div>
+
+    <!-- Modal de advertencia -->
+    <div class="modal" id="modal">
+        <p><strong>¡ADVERTENCIA!</strong></p>
+        <p>CASI PIERDES TODOS TUS DATOS</p>
+        <img src="https://i.pinimg.com/736x/31/2d/c4/312dc40eab7108af5e8769f8cf4c7eb8.jpg" alt="Imagen de advertencia">
+        <p>TUS DATOS NO FUERON GUARDADOS, PERO TEN CUIDADO NO ESCANES CÓDIGOS RAROS</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('congratsModal').style.display = 'block'; // Muestra la ventana de felicitaciones
+        });
+
+        function mostrarAdvertencia() {
+            document.getElementById('congratsModal').style.display = 'none'; // Oculta la ventana de felicitaciones
+            document.getElementById('modal').style.display = 'block'; // Muestra el modal de advertencia
+        }
+
+        function cerrarModal() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
